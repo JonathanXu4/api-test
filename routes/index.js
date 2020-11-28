@@ -5,8 +5,5 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Friends' });
 });
-router.get('/add-friend', function(request, response, next){
-  response.render('add-friend')
-});
 
 module.exports = router;

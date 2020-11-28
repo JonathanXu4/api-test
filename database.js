@@ -1,5 +1,12 @@
+/**
+ * In general copy paste this code
+ * Update the URI to your own database
+ */
+
+
 const mongoose = require('mongoose');
 
+// Update with your own Database URI
 const mongoDB = process.env.MONGODB_URI || 'mongodb+srv://ninja:blue@cluster0.ggwuq.mongodb.net/Netcentric?retryWrites=true&w=majority';
 
 mongoose
@@ -13,6 +20,7 @@ mongoose
 
 const db = mongoose.connection;
 
+// Bind the console to errors, to show them on console
 db.on('error', console.error.bind(console, 'MongoDB Connection Error'));
 
-module.exports
+module.exports = db;
