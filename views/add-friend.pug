@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    br
+    .container-fluid
+        form(action='/api/friends' method='POST')
+            .form-group
+                label(for='txtName') Name
+                input.form-control(type='text' name='txtName' id='txtName' placeholder='Name')
+            .form-group
+                label(for='txtPhone') Phone Number
+                input.form-control(type='text' name='txtPhone' id='txtPhone' placeholder='Phone')
+            .form-group
+                label(for='colorFavorite') Favorite Color
+                input.form-control(type='color' name='colorFavorite' id='colorFavorite'
+                    placeholder='Favorite Color')
+            .form-group.form-check
+                input.form-check-input(type='checkbox' name='chbCallMidnight'
+                    id='chbCallMidnight' placeholder='Can Call Anytime')
+                label.form-check-label(for='chbCallMidnight') Can call anytime
+            button.btn.btn-primary(type='submit') Submit
