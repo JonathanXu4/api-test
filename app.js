@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/friends', friendsRouter); // Use that router using /api/friends
+app.use('/api/books', friendsRouter); // Use that router using /api/books
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
