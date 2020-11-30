@@ -27,7 +27,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f5c9c95-3f7b-4568-b08b-8ae619e58c36" name="Default Changelist" comment="" />
+    <list default="true" id="9f5c9c95-3f7b-4568-b08b-8ae619e58c36" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/routes/friends.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/friends.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +93,7 @@
       <workItem from="1606646447130" duration="10663000" />
       <workItem from="1606694680836" duration="1505000" />
       <workItem from="1606710053850" duration="101000" />
+      <workItem from="1606720774834" duration="3000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit, updated package.json">
       <created>1604962055115</created>
