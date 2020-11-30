@@ -60,7 +60,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.18.3" />
     <property name="javascript.nodejs.core.library.typings.version" value="12.19.7" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/routes" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -90,6 +90,7 @@
       <workItem from="1606629819822" duration="1617000" />
       <workItem from="1606646447130" duration="10663000" />
       <workItem from="1606694680836" duration="1505000" />
+      <workItem from="1606710053850" duration="101000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit, updated package.json">
       <created>1604962055115</created>
