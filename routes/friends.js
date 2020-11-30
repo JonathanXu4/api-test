@@ -12,6 +12,7 @@ let express = require('express');
 let router = express.Router();
 // For the Data Model
 let FriendSchema = require('../models/friends');
+const cors = require("cors");
 
 
 function HandleError(response, reason, message, code){
@@ -43,7 +44,7 @@ router.post('/', (request, response, next) => {
     }
 });
 
-router.get('/', (request, response, next) => {
+router.get('/', cors(), (request, response, next) => {
     let name = request.query['name'];
     if (name){
         FriendSchema
