@@ -14,6 +14,7 @@ let router = express.Router();
 let FriendSchema = require('../models/friends');
 const cors = require("cors");
 
+router.use(cors());
 
 function HandleError(response, reason, message, code){
     console.log('ERROR: ' + reason);
