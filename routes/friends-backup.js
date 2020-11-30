@@ -19,19 +19,22 @@ function HandleError(response, reason, message, code){
     response.status(code || 500).json({"error:": message});
 }
 
+// Post complete
 router.post('/', (request, response, next) => {
-    let newFriend = request.body;
+    let newBook = request.body;
     //console.log(request.body);
-    if (!newFriend.firstName || !newFriend.lastName || !newFriend.phone){
+    // This is what gives an error if not all of the form data is inputted, change this later
+    if (!newBook.Name || !newBook.Author || !newBook.ISBN || !newBook.Price) {
         HandleError(response, 'Missing Info', 'Form data missing', 500);
-    }else{
+    } else if (typeof newBook.ISBN != 'string') {
+        HandleError(response, 'Invalid ISBN', 'ISBN is not a string', 500);
+    } else {
+        // This lists the structure, change later
         let friend = new FriendSchema({
-            firstName: newFriend.firstName,
-            lastName: newFriend.lastName,
-            phone: newFriend.phone,
-            email: newFriend.email,
-            birthday: newFriend.birthday,
-            callAnytime: newFriend.callAnytime
+            Name: newBook.Name,
+            Author: newBook.Author,
+            ISBN: newBook.ISBN,
+            Price: newBook.Price
         });
         friend.save((error) => {
             if (error){
@@ -43,11 +46,13 @@ router.post('/', (request, response, next) => {
     }
 });
 
+// get ALL complete
+// get by author complete
 router.get('/', (request, response, next) => {
-    let name = request.query['name'];
-    if (name){
+    let author = request.query['author'];
+    if (author){
         FriendSchema
-            .find({"firstName": name})
+            .find({"Author": author})
             .exec( (error, friends) => {
                 if (error){
                     response.send({"error": error});
@@ -66,41 +71,32 @@ router.get('/', (request, response, next) => {
                 }
             });
     }
-    // FriendSchema
-    //     .find()
-    //     .exec( (error, friends) => {
-    //         if (error){
-    //             response.send({"error": error});
-    //         }else{
-    //             response.send(friends);
-    //         }
-    //     });
 } );
 
+// get by ISBN complete
 router.get('/:id', (request, response, next) =>{
+    console.log(request.params.id);
     FriendSchema
-        .findOne({"_id": request.params.id}, (error, result) =>{
+        .findOne({"ISBN": request.params.id}, (error, result) =>{
             if (error) {
                 response.status(500).send(error);
             }
             if (result){
                 response.send(result);
             }else{
-                response.status(404).send({"id": request.params.id, "error":  "Not Found"});
+                response.status(404).send({"ISBN": request.params.id, "error":  "Not Found"});
             }
 
         });
 });
 
+// Patch with ISBN complete
 router.patch('/:id', (request, response, next) =>{
     FriendSchema
-        .findById(request.params.id, (error, result)=>{
+        .findOne({"ISBN": request.params.id}, (error, result) =>{
             if (error) {
                 response.status(500).send(error);
             }else if (result){
-                if (request.body._id){
-                    delete request.body._id;
-                }
                 for (let field in request.body){
                     result[field] = request.body[field];
                 }
@@ -111,15 +107,17 @@ router.patch('/:id', (request, response, next) =>{
                     response.send(friend);
                 });
             }else{
-                response.status(404).send({"id": request.params.id, "error":  "Not Found"});
+                console.log('4');
+                response.status(404).send({"ISBN": request.params.id, "error":  "Not Found"});
             }
 
         });
 });
 
+// Delete with ISBN complete
 router.delete('/:id', (request, response, next) =>{
     FriendSchema
-        .findById(request.params.id, (error, result)=>{
+        .findOne({"ISBN": request.params.id}, (error, result) =>{
             if (error) {
                 response.status(500).send(error);
             }else if (result){
@@ -127,11 +125,13 @@ router.delete('/:id', (request, response, next) =>{
                     if (error){
                         response.status(500).send(error);
                     }
-                    response.send({"deletedId": request.params.id});
+                    response.send({"deletedISBN": request.params.id});
                 });
             }else{
-                response.status(404).send({"id": request.params.id, "error":  "Not Found"});
+                console.log('4');
+                response.status(404).send({"ISBN": request.params.id, "error":  "Not Found"});
             }
+
         });
 });
 
